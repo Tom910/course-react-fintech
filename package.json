@@ -11,16 +11,18 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "test:cli": "cross-env CI=true npm run test",
     "lint:js": "eslint './src/**/*.js' './src/**/*.jsx'",
-    "cli": "npm run test && npm run lint:js",
+    "cli": "npm run test:cli && npm run lint:js",
     "eject": "react-scripts eject",
     "precommit": "lint-staged",
-    "prepush": "npm run test"
+    "prepush": "npm run test:cli"
   },
   "lint-staged": {
     "*.@(js|jsx)": "eslint --quiet"
   },
   "devDependencies": {
+    "cross-env": "^5.1.1",
     "enzyme": "^3.1.1",
     "enzyme-adapter-react-16": "^1.0.4",
     "husky": "^0.14.3",

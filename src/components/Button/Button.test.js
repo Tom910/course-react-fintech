@@ -13,21 +13,21 @@ describe('Button', () => {
 
   describe('Базовый рендеринг', () => {
     it('Кнопка с текстом', () => {
-      const component = shallow(<Button>Кнопк</Button>);
+      const component = shallow(<Button>Кнопка</Button>);
 
-      expect(component.html()).toEqual('<button>Кнопк</button>');
+      expect(component.html()).toEqual('<button>Кнопка</button>');
     });
 
     it('Кнопка с текстом и типов', () => {
-      const component = shallow(<Button type='submit'>Кнопк</Button>);
+      const component = shallow(<Button type='submit'>Кнопка</Button>);
 
-      expect(component.html()).toEqual('<button type="submit">Кнопк</button>');
+      expect(component.html()).toEqual('<button type="submit">Кнопка</button>');
     });
   });
 
   describe('Вызов события', () => {
     const eventOnCLick = jest.fn();
-    const component = shallow(<Button onClick={eventOnCLick}>Кнопк</Button>);
+    const component = shallow(<Button onClick={eventOnCLick}>Кнопка</Button>);
 
     component.find('button').simulate('click');
 

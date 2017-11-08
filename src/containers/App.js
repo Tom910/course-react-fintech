@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
+import TimelineList from '../components/TimelineList/TimelineList';
+import Order from '../components/Order/Order';
 import './App.css';
 
 class App extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      items: [{ title: 'PS4 pro', price: 30000 }]
+    }
+  }
+
+  handleSubmit = (order) => {
+    this.setState({
+      items: [...this.state.items,  order]
+    });
+  };
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <TimelineList items={this.state.items}/>
+        <Order handleSubmit={this.handleSubmit} />
       </div>
     );
   }

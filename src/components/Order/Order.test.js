@@ -26,6 +26,10 @@ describe('Order', () => {
 
       expect(component.state().type).toBe('Безумные траты');
     });
+
+    it('В первоначальном стейте компонента есть параметр type', () => {
+      expect(component.state().type).toBe('');
+    });
   });
 
   describe('Валидация', () => {
@@ -69,6 +73,17 @@ describe('Order', () => {
 
       component.find('form').simulate('submit');
       expect(handleSubmit).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('Очистка формы после отправки', () => {
+    it('Проверяем, что в state инитал данные после отправки', () => {
+      component.find('[name="title"]').simulate('change',createEvent('title', 'Apple'));
+      component.find('[name="price"]').simulate('change',createEvent('price', '130000'));
+      component.find('[name="type"]').simulate('change',createEvent('type', 'Безумные траты'));
+      component.find('form').simulate('submit');
+
+      expect(component.state()).toEqual({"price": "", "title": "", "type": ""});
     });
   });
 });

@@ -1,20 +1,14 @@
 .Button {
-  background-color: transparent;
-  border: 2px solid #865CD6;
-  border-radius: 4px;
   color: #333;
-  font-size: 19px;
-  font-size: 1.1875rem;
-  line-height: 24px;
-  font-weight: 600;
+  font-size: 17px;
+  line-height: 1.41;
   cursor: pointer;
   text-align: center;
   outline: none;
   min-width: 120px;
   max-width: 384px;
-  background-color: #865CD6;
-  color: #fff;
-  border-radius: 5px;
-  padding: 6px 22px;
-  border-color: #865CD6;
+  background-color: #ffdd2d;
+  padding: 21px 50px 20px;
+  border: 1px solid transparent;
+  border-radius: 6px;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import './Money.css';
 
 const currencies = {
@@ -8,7 +9,7 @@ const currencies = {
   USD: '$'
 };
 
-export default ({ value, currency }) => {
+const Money = ({ value, currency }) => {
   const [amount, smalls] = String(value).split('.');
   const currencySymbol = currencies[currency];
 
@@ -16,7 +17,18 @@ export default ({ value, currency }) => {
     <span className='Money'>
       <span>{amount}</span>
       {smalls ? <span className='Money__smalls'>,{smalls}</span> : null}
-      {currencySymbol ? <span>{currencySymbol}</span> : null}
+      {currencySymbol ? <span>&nbsp;{currencySymbol}</span> : null}
     </span>
   );
 };
+
+Money.propTypes = {
+  value: PropTypes.number.isRequired,
+  currency: PropTypes.strings
+};
+
+Money.defaultProps = {
+  currency: 'RUB'
+};
+
+export default Money

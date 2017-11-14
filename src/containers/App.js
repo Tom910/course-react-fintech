@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TimelineList from '../components/TimelineList/TimelineList';
 import Order from '../components/Order/Order';
+import Sidebar from '../components/Sidebar/Sidebar';
 import './App.css';
 
 class App extends Component {
@@ -8,21 +9,32 @@ class App extends Component {
     super();
 
     this.state = {
-      items: [{ title: 'PS4 pro', price: 30000, type: 'hobbie' }]
+      accounts: {},
+      user: {},
+      operations: [
+        { title: 'PS4 pro', amount: 30000, category: 'hobbie', account: 'Основной', date: new Date() }
+      ]
     }
   }
 
   handleSubmit = (order) => {
     this.setState({
-      items: [...this.state.items,  order]
+      operations: [...this.state.operations,  order]
     });
   };
 
   render() {
     return (
       <div className="App">
-        <TimelineList items={this.state.items}/>
-        <Order handleSubmit={this.handleSubmit} />
+        <div className='App__layout'>
+          <div className='App_sidebar'>
+            <Sidebar />
+          </div>
+          <div className='App__content'>
+            <TimelineList operations={this.state.operations}/>
+            <Order handleSubmit={this.handleSubmit} account='Основной' />
+          </div>
+        </div>
       </div>
     );
   }

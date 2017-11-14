@@ -1,0 +1,34 @@
+.FormField {
+  position: relative;
+  padding: 6px 24px;
+  border: 1px solid rgba(0,0,0,0.15);
+  margin-bottom: -1px;
+  background-color: #fff;
+  color: #333;
+  opacity: 1;
+}
+
+.FormField--error {
+  z-index: 1;
+  border-color: #F04953;
+}
+
+.FormField__error {
+  display: block;
+  float: right;
+  color: #F04953;
+  line-height: 24px;
+}
+
+.FormField__label {
+  display: block;
+  font-size: 14px;
+  line-height: 24px;
+  color: #666;
+}
+
+.FormField__content {
+  display: block;
+  margin-left: -24px;
+  margin-right: -24px;
+}

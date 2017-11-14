@@ -1,3 +1,9 @@
-.List {
+.TimelineList {
   margin-bottom: 15px;
+}
+
+.TimelineList__empty {
+  padding: 11px 18px 7px;
+  font-size: 14px;
+  line-height: 18px;
 }

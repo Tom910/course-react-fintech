@@ -1,5 +1,12 @@
 import React from 'react';
+import './Button.css';
 
 export default ({ type, children, onClick }) => (
-  <button type={type} onClick={onClick}>{children}</button>
+  <button
+    className='Button'
+    type={type}
+    onClick={onClick}
+  >
+    {children}
+  </button>
 )

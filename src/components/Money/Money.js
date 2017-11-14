@@ -1,4 +1,5 @@
 import React from 'react';
+import './Money.css';
 
 const currencies = {
   RUB: '₽',
@@ -12,9 +13,9 @@ export default ({ value, currency }) => {
   const currencySymbol = currencies[currency];
 
   return (
-    <span>
+    <span className='Money'>
       <span>{amount}</span>
-      {smalls ? <span>,{smalls}</span> : null}
+      {smalls ? <span className='Money__smalls'>,{smalls}</span> : null}
       {currencySymbol ? <span>{currencySymbol}</span> : null}
     </span>
   );

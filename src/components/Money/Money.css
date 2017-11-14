@@ -1,0 +1,9 @@
+.Money {
+  white-space: nowrap;
+}
+
+.Money__smalls {
+  font-size: .75em;
+  line-height: 1;
+  opacity: .5;
+}

@@ -59,19 +59,23 @@ export default class Order extends React.Component {
   };
 
   render() {
-    return <Form onSubmit={this.handleSubmit}>
-      <FormField label='Название' name='title'>
-        <FormText value={this.state.title} name='title' onChange={this.handleInputChange} />
-      </FormField>
+    return <div>
+      <h2>Добавить Покупку</h2>
+      <Form onSubmit={this.handleSubmit}>
+        <FormField label='Название' name='title'>
+          <FormText value={this.state.title} name='title' onChange={this.handleInputChange} />
+        </FormField>
 
-      <FormField label='Категория' name='category'>
-        <FormText value={this.state.category} name='category' onChange={this.handleInputChange} />
-      </FormField>
+        <FormField label='Категория' name='category'>
+          <FormText value={this.state.category} name='category' onChange={this.handleInputChange} />
+        </FormField>
 
-      <FormField label='Цена' name='amount'>
-        <FormText value={this.state.amount} name='amount' onChange={this.handleInputChange} />
-      </FormField>
-      <Button type='submit'>Отправить</Button>
-    </Form>
+        <FormField label='Цена' name='amount'>
+          <FormText value={this.state.amount} name='amount' onChange={this.handleInputChange} />
+        </FormField>
+        <br />
+        <Button type='submit'>Отправить</Button>
+      </Form>
+    </div>
   }
 }

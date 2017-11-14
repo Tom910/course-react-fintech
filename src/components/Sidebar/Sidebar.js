@@ -7,6 +7,7 @@ export default () => (
     <div className='Sidebar__header'>
       Счета
     </div>
+
     <div className='Sidebar__account Sidebar__account--selected'>
       <div className='Sidebar__account-name'>
         Основной
@@ -15,6 +16,7 @@ export default () => (
         <Money value={2133.231} />
       </div>
     </div>
+
     <div className='Sidebar__account'>
       <div className='Sidebar__account-name'>
         Добавить счет

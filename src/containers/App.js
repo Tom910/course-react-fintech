@@ -11,15 +11,20 @@ class App extends Component {
     this.state = {
       accounts: {},
       user: {},
-      operations: [
-        { title: 'PS4 pro', amount: 30000, category: 'hobbie', account: 'Основной', date: new Date() }
-      ]
+      operations: {
+        '-Kyt_8u9qxKNcXUsa679': {
+          title: 'PS4',
+          amount: 3000,
+          category: 'hobbie',
+          account: 'Основной'
+        }
+      }
     }
   }
 
   handleSubmit = (order) => {
     this.setState({
-      operations: [...this.state.operations,  order]
+      operations: { ...this.state.operations, order }
     });
   };
 

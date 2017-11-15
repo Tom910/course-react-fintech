@@ -24,7 +24,7 @@ const Money = ({ value, currency }) => {
 
 Money.propTypes = {
   value: PropTypes.number.isRequired,
-  currency: PropTypes.strings
+  currency: PropTypes.string
 };
 
 Money.defaultProps = {

@@ -23,6 +23,7 @@
 }
 
 .Sidebar__account {
+  display: block;
   cursor: pointer;
   padding: 15px;
   min-height: 49px;
@@ -38,13 +39,14 @@
   background-color: rgba(0,0,0,.05);
 }
 
-.Sidebar__account--selected {
+.Link--active .Sidebar__account {
   background-color: rgb(175, 182, 196);
   color: rgb(255, 255, 255);
 }
 
-.Sidebar__account--selected:hover {
-  background-color: #a6adba;
+.Link--active .Sidebar__account:hover {
+  background-color: rgb(175, 182, 196);
+  color: rgb(255, 255, 255);
 }
 
 .Sidebar__account-name {

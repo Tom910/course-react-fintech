@@ -23,7 +23,7 @@ class App extends Component {
       accounts: {},
       user: {},
       operations: {}
-    }
+    };
     this.accountCount = 0;
   }
 
@@ -32,6 +32,7 @@ class App extends Component {
   };
 
   createAccount = (account) => {
+    console.log(account);
     this.setState({
       accounts: {...this.state.accounts, [++this.accountCount]: account}
     });
@@ -55,7 +56,7 @@ class App extends Component {
         <div className="App">
           <div className='App__layout'>
             <div className='App_sidebar'>
-              <Sidebar />
+              <Sidebar accounts={this.state.accounts} />
             </div>
             <div className='App__content'>
               <Route exact path='/' component={Home} />

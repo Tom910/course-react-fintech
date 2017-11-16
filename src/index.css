@@ -1,5 +1,6 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font: 13px/20px -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: #333;
 }

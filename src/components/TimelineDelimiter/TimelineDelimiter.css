@@ -1,0 +1,10 @@
+.TimelineDelimiter {
+  display: block;
+  padding: 11px 18px 7px;
+  background-color: #f6f7f8;
+  text-transform: uppercase;
+  letter-spacing: .9px;
+  color: #9299a2;
+  font-size: 13px;
+  line-height: 18px;
+}

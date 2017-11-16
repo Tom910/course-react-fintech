@@ -1,24 +1,51 @@
 import React from 'react';
 
+import Button from '../Button/Button';
+import FormField from "../FormField/FormField";
+import FormText from "../FormText/FormText";
+import Form from "../Form/Form";
+
+const validateRequire = value => !value;
+
 export default class Order extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
+      account: props.account,
       title: '',
-      price: ''
+      category: '',
+      amount: ''
     };
   }
 
   formClear() {
     this.setState({
       title: '',
-      price: ''
+      category: '',
+      amount: ''
     });
+  }
+
+  validationsForm() {
+    let status = true;
+
+    Object.keys(this.state).forEach(item => {
+      if(validateRequire(this.state[item])) {
+        status = false;
+        return false;
+      }
+    });
+
+    return status;
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
+
+    if (!this.validationsForm()) {
+      return;
+    }
 
     this.props.handleSubmit(this.state);
 
@@ -32,10 +59,23 @@ export default class Order extends React.Component {
   };
 
   render() {
-    return <form onSubmit={this.handleSubmit}>
-      <input type="text" name='title' value={this.state.title} onChange={this.handleInputChange} placeholder='Название' />
-      <input type="text" name='price' value={this.state.price} onChange={this.handleInputChange} placeholder='Цена' />
-      <button type='submit'>Отправить</button>
-    </form>
+    return <div>
+      <h2>Добавить Покупку</h2>
+      <Form onSubmit={this.handleSubmit}>
+        <FormField label='Название' name='title'>
+          <FormText value={this.state.title} name='title' onChange={this.handleInputChange} />
+        </FormField>
+
+        <FormField label='Категория' name='category'>
+          <FormText value={this.state.category} name='category' onChange={this.handleInputChange} />
+        </FormField>
+
+        <FormField label='Цена' name='amount'>
+          <FormText value={this.state.amount} name='amount' onChange={this.handleInputChange} />
+        </FormField>
+        <br />
+        <Button type='submit'>Отправить</Button>
+      </Form>
+    </div>
   }
 }

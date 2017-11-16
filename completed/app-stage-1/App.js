@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Sidebar from '../components/Sidebar/Sidebar';
 import Home from '../pages/Home';
 import Account from '../pages/Account';
 import CreateAccount from '../pages/CreateAccount';
-
-import database from '../services/database';
 
 import {
   BrowserRouter as Router,
@@ -21,25 +18,22 @@ class App extends Component {
     this.state = {
       accounts: {},
       user: {},
-      operations: {}
+      operations: {
+        '-Kyt_8u9qxKNcXUsa679': {
+          title: 'PS4',
+          amount: 3000,
+          category: 'hobbie',
+          account: 'Основной'
+        }
+      }
     }
   }
 
   handleSubmit = (order) => {
-    database.ref('operations').push(order);
-  };
-
-  componentDidMount() {
-    const operationsRef = database.ref('operations');
-
-    operationsRef.on('value', (snapshot) => {
-      let items = snapshot.val();
-
-      this.setState({
-        operations: { ...this.state.operations, ...items }
-      });
+    this.setState({
+      operations: { ...this.state.operations, order }
     });
-  }
+  };
 
   render() {
     return (
@@ -53,11 +47,12 @@ class App extends Component {
               <Route exact path='/' component={Home} />
               <Route
                 path='/account/:accountId'
-                component={() => <Account operations={this.state.operations} onSubmit={this.handleSubmit}/>}
+                component={Account}
               />
               <Route path='/create-account' component={CreateAccount} />
             </div>
           </div>
+
         </div>
       </Router>
     );

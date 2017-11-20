@@ -10,7 +10,8 @@ import database from '../services/database';
 
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 import './App.css';
@@ -24,48 +25,56 @@ class App extends Component {
       user: {},
       operations: {}
     };
-    this.accountCount = 0;
   }
 
-  handleSubmit = (order) => {
+  createOperation = (order) => {
     database.ref('operations').push(order);
   };
 
   createAccount = (account) => {
-    console.log(account);
-    this.setState({
-      accounts: {...this.state.accounts, [++this.accountCount]: account}
-    });
+    database.ref('accounts').push(account);
   };
 
   componentDidMount() {
-    const operationsRef = database.ref('operations');
+    this.subscribeOnFirebase('operations');
+    this.subscribeOnFirebase('accounts');
+  }
+
+  subscribeOnFirebase(key) {
+    const operationsRef = database.ref(key);
 
     operationsRef.on('value', (snapshot) => {
       let items = snapshot.val();
 
       this.setState({
-        operations: { ...this.state.operations, ...items }
+        [key]: { ...this.state[key], ...items }
       });
     });
-  }
+  };
 
   render() {
+    const { accounts, operations } = this.state;
+
     return (
       <Router>
         <div className="App">
           <div className='App__layout'>
             <div className='App_sidebar'>
-              <Sidebar accounts={this.state.accounts} />
+              <Sidebar accounts={accounts} />
             </div>
             <div className='App__content'>
-              <Route exact path='/' component={Home} />
-              <Route
-                path='/account/:accountId'
-                component={() => <Account operations={this.state.operations} onSubmit={this.handleSubmit}/>}
-              />
-              <Route path='/create-account' component={() => <CreateAccount createAcoount={this.createAccount} />} />
-              <Route path='/about' component={About} />
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route
+                  path='/account/:accountId'
+                  component={() => <Account operations={operations} accounts={accounts} onSubmit={this.createOperation}/>}
+                />
+                <Route
+                  path='/create-account'
+                  component={() => <CreateAccount createAcoount={this.createAccount}/>}
+                />
+                <Route path='/about' component={About} />
+              </Switch>
             </div>
           </div>
         </div>

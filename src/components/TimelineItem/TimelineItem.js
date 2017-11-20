@@ -3,11 +3,11 @@ import Money from '../Money/Money';
 
 import './TimelineItem.css';
 
-export default ({ title, price, category, account }) => (
+const TimelineItem = ({ title, price, category, account }) => (
   <div className='TimelineItem'>
     <div className='TimelineItem__operations'>
       <div className='TimelineItem__operations-account'>
-        {account}
+        {account ? account.name : null}
       </div>
       <div className='TimelineItem__operations-title'>
         {title}
@@ -26,3 +26,5 @@ export default ({ title, price, category, account }) => (
     </div>
   </div>
 );
+
+export default TimelineItem;

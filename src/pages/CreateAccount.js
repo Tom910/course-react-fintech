@@ -1,13 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux'
 
 import Button from '../components/Button/Button';
 import FormField from "../components/FormField/FormField";
 import FormText from "../components/FormText/FormText";
 import Form from "../components/Form/Form";
+import { updateFirebaseAction } from "../middleware/updateFirebase";
 
 const validateRequire = value => !value;
 
-export default class Order extends React.Component {
+class CreateAccount extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,7 +48,7 @@ export default class Order extends React.Component {
       return;
     }
 
-    this.props.createAcoount(this.state);
+    this.props.createAccount(this.state);
 
     this.formClear();
   };
@@ -79,3 +81,9 @@ export default class Order extends React.Component {
     </div>
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  createAccount: (account) => dispatch(updateFirebaseAction('accounts', account))
+});
+
+export default connect(undefined, mapDispatchToProps)(CreateAccount);

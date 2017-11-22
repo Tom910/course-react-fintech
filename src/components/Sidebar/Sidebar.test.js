@@ -7,11 +7,11 @@ describe('Sidebar', () => {
   /*
   * Sidebar стал умнее и теперь умеет отрендерить множество счетов
   * Новые props
-  * - accounts - объект с аккаунтами клиента
+  * - accounts.js - объект с аккаунтами клиента
   * Нужно в компоент Money передавать currency
   * */
 
-  describe('Рендерим accounts', () => {
+  describe('Рендерим accounts.js', () => {
     const accounts = {
       "1": {"currency": "RUB", "name": "Кредитка", amount: 100.01 },
       "2": {"currency": "USD", "name": "Депозит", amount: 500 }

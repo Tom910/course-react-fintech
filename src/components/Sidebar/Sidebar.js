@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 import Money from '../Money/Money';
 
 import {
@@ -48,4 +50,9 @@ Sidebar.defaultProps = {
   accounts: {}
 };
 
-export default Sidebar;
+const mapStateToProps = state => ({
+  accounts: state.accounts
+});
+
+
+export default withRouter(connect(mapStateToProps)(Sidebar));

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import Sidebar from '../components/Sidebar/Sidebar';
 import Home from '../pages/Home';
 import Account from '../pages/Account';
 import CreateAccount from '../pages/CreateAccount';
 import About from '../pages/About';
 
-import database from '../services/database';
+import { subscribeFirebaseAction } from '../middleware/subscribeFirebase';
 
 import {
   BrowserRouter as Router,
@@ -17,61 +17,29 @@ import {
 import './App.css';
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      accounts: {},
-      user: {},
-      operations: {}
-    };
-  }
-
-  createOperation = (order) => {
-    database.ref('operations').push(order);
-  };
-
-  createAccount = (account) => {
-    database.ref('accounts').push(account);
-  };
-
   componentDidMount() {
-    this.subscribeOnFirebase('operations');
-    this.subscribeOnFirebase('accounts');
+    this.props.subscribeToFirebase('operations', 'UPDATE_OPERATION');
+    this.props.subscribeToFirebase('accounts', 'UPDATE_ACCOUNT');
   }
-
-  subscribeOnFirebase(key) {
-    const operationsRef = database.ref(key);
-
-    operationsRef.on('value', (snapshot) => {
-      let items = snapshot.val();
-
-      this.setState({
-        [key]: { ...this.state[key], ...items }
-      });
-    });
-  };
 
   render() {
-    const { accounts, operations } = this.state;
-
     return (
       <Router>
         <div className="App">
           <div className='App__layout'>
             <div className='App_sidebar'>
-              <Sidebar accounts={accounts} />
+              <Sidebar />
             </div>
             <div className='App__content'>
               <Switch>
                 <Route exact path='/' component={Home} />
                 <Route
                   path='/account/:accountId'
-                  component={() => <Account operations={operations} accounts={accounts} onSubmit={this.createOperation}/>}
+                  component={Account}
                 />
                 <Route
                   path='/create-account'
-                  component={() => <CreateAccount createAcoount={this.createAccount}/>}
+                  component={CreateAccount}
                 />
                 <Route path='/about' component={About} />
               </Switch>
@@ -83,4 +51,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  subscribeToFirebase: (database, callType) => dispatch(subscribeFirebaseAction(database, callType))
+});
+
+export default connect(undefined, mapDispatchToProps)(App);

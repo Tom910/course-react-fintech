@@ -32,10 +32,10 @@ describe('httpRequest', () => {
     }
   }
 
-  Мидделвеар должен вернуть промис и при успешном вызове диспатчить call.success при упавшем, call.fail
+  Мидделвеар должен вернуть промис и при успешном вызове диспатчить call.success передая данные в payload. При возникновении ошибки, call.fail
 
 
-  Здесь используются снапшоты, результаты их можно увидеть тут src/middleware/__snapshots__/httpRequest.test.js.snap
+  В Этом тесте используются снапшоты, результаты выполнений можно увидеть тут src/middleware/__snapshots__/httpRequest.test.js.snap
   * */
 
 
@@ -73,6 +73,7 @@ describe('httpRequest', () => {
       return request({ type: 'API_REQUEST', request: { API: 'site.com', method: 'get', query: '/name=4' }, call: { success: 'ACCOUNT_SUCCES', fail: 'ACCOUNT_FAIL' } })
         .then(() => {
           expect(fetch.mock.calls).toMatchSnapshot();
+          expect(store.dispatch.mock.calls).toMatchSnapshot();
         });
     });
 

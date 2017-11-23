@@ -15,20 +15,6 @@ exports[`httpRequest Перехватили Проверяем вызов ког
 Array [
   Array [
     Object {
-      "payload": Response {
-        "_bodyInit": undefined,
-        "_bodyText": "",
-        "headers": Headers {
-          "map": Object {
-            "content-type": "application/json",
-          },
-        },
-        "ok": false,
-        "status": 500,
-        "statusText": null,
-        "type": "default",
-        "url": "",
-      },
       "type": "ACCOUNT_FAIL",
     },
   ],
@@ -41,6 +27,19 @@ Array [
     "site.com/name=4",
     Object {
       "method": "get",
+    },
+  ],
+]
+`;
+
+exports[`httpRequest Перехватили Проверяем вызов когда fetch успешен 2`] = `
+Array [
+  Array [
+    Object {
+      "payload": Object {
+        "ids": 213,
+      },
+      "type": "ACCOUNT_SUCCES",
     },
   ],
 ]

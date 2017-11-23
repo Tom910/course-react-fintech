@@ -5,7 +5,11 @@ import notes, {
   UPDATE_NOTE,
   DELETE_ALL_NOTES
 } from './notes.js';
-
+/*
+ * Ваша задача - написать редьюсер, который будет пребразовывать стейт
+ * в соотвествии с теми действиями над заметками которые будут диспатчиться.
+ * У каждой заметки есть уникальное поле - id.
+ */
 describe('notes reducer', () => {
   it('should delete all notes', () => {
     expect(notes([{}, {}], { type: DELETE_ALL_NOTES })).toEqual([]);

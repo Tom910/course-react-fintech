@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`httpRequest Перехватили Проверяем вызов когда fetch упал 1`] = `
+Array [
+  Array [
+    "site.com/name=4",
+    Object {
+      "method": "get",
+    },
+  ],
+]
+`;
+
+exports[`httpRequest Перехватили Проверяем вызов когда fetch упал 2`] = `
+Array [
+  Array [
+    Object {
+      "type": "ACCOUNT_FAIL",
+    },
+  ],
+]
+`;
+
+exports[`httpRequest Перехватили Проверяем вызов когда fetch успешен 1`] = `
+Array [
+  Array [
+    "site.com/name=4",
+    Object {
+      "method": "get",
+    },
+  ],
+]
+`;
+
+exports[`httpRequest Перехватили Проверяем вызов когда fetch успешен 2`] = `
+Array [
+  Array [
+    Object {
+      "payload": Object {
+        "ids": 213,
+      },
+      "type": "ACCOUNT_SUCCES",
+    },
+  ],
+]
+`;

@@ -23,23 +23,25 @@ class App extends Component {
   }
 
   render() {
+    const { accounts, operations } = this.props;
+
     return (
       <Router>
         <div className="App">
           <div className='App__layout'>
             <div className='App_sidebar'>
-              <Sidebar />
+              <Sidebar accounts={accounts} />
             </div>
             <div className='App__content'>
               <Switch>
                 <Route exact path='/' component={Home} />
                 <Route
                   path='/account/:accountId'
-                  component={Account}
+                  component={() => <Account operations={operations} accounts={accounts} onSubmit={this.createOperation}/>}
                 />
                 <Route
                   path='/create-account'
-                  component={CreateAccount}
+                  component={() => <CreateAccount createAcoount={this.createAccount}/>}
                 />
                 <Route path='/about' component={About} />
               </Switch>
@@ -51,8 +53,14 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  accounts: state.accounts,
+  user: state.user,
+  operations: state.operations
+});
+
 const mapDispatchToProps = dispatch => ({
   subscribeToFirebase: (database, callType) => dispatch(subscribeFirebaseAction(database, callType))
 });
 
-export default connect(undefined, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

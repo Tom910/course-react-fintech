@@ -59,7 +59,7 @@ describe('notes reducer', () => {
     ]);
   });
 
-  it('should rorder notes', () => {
+  it('should reorder notes', () => {
     expect(notes(
       [
         {id: 1, name: 'test'},

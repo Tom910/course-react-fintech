@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 const httpRequest = require('./httpRequest').default;
 
 const mockResponse = (status, statusText, response) => {

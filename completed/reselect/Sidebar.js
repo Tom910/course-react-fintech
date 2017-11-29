@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { createSelector } from 'reselect'
 import Money from '../Money/Money';
 
 import {
@@ -9,7 +10,7 @@ import {
 
 import './Sidebar.css';
 
-const Sidebar = ({ accounts }) => {
+const Sidebar = ({ accounts, accountsSum }) => {
   const accountKeys = Object.keys(accounts);
 
   return (
@@ -28,7 +29,7 @@ const Sidebar = ({ accounts }) => {
                 {account.name}
               </div>
               <div className='Sidebar__account-amount'>
-                <Money value={account.amount} currency={account.currency} />
+                <Money value={accountsSum[key] || 0} currency={account.currency} />
               </div>
             </div>
           </NavLink>
@@ -46,13 +47,43 @@ const Sidebar = ({ accounts }) => {
   );
 };
 
+function sumAccountsCalc(accounts, operations) {
+  const result = {};
+
+  for (var key in operations) {
+    const item = operations[key];
+    const account = item.account;
+
+    if (!result[account]) {
+      result[account] = 0;
+    }
+
+    result[account] += Number(item.amount) || 0;
+  }
+
+  return result;
+}
+
 Sidebar.defaultProps = {
   accounts: {}
 };
 
-const mapStateToProps = state => ({
-  accounts: state.accounts
-});
+
+const accountsSelector = state => state.accounts;
+const operationsSelector = state => state.operations;
+
+const accountSumSelector = createSelector(
+  accountsSelector,
+  operationsSelector,
+  sumAccountsCalc
+);
+
+const mapStateToProps = state => {
+  return {
+    accounts: state.accounts,
+    accountsSum: accountSumSelector(state)
+  }
+};
 
 
 export default withRouter(connect(mapStateToProps)(Sidebar));

@@ -67,10 +67,12 @@ Sidebar.defaultProps = {
   accounts: {}
 };
 
-const mapStateToProps = state => ({
-  accounts: state.accounts,
-  accountsSum: sumAccountsCalc(state.accounts, state.operations)
-});
+const mapStateToProps = state => {
+  return {
+    accounts: state.accounts,
+    accountsSum: sumAccountsCalc(state.accounts, state.operations)
+  }
+};
 
 
 export default withRouter(connect(mapStateToProps)(Sidebar));

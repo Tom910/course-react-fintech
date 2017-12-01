@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormFiled Отображение формы Отобразить стандартное состояние 1`] = `"<div class=\\"sc-bxivhb koVcpI\\"><span class=\\"sc-bdVaJa icBKnC\\">Ошибка</span><span class=\\"sc-htpNat hvAZfD\\"></span></div>"`;
+
+exports[`FormFiled Отображение формы Отобразить стандартное состояние 2`] = `"<div class=\\"sc-bxivhb koVcpI\\">1511979321461<span class=\\"sc-bdVaJa icBKnC\\">Ошибка</span><span class=\\"sc-htpNat hvAZfD\\"></span></div>"`;
+
+exports[`FormFiled Отображение формы Отобразить стандартное состояние 3`] = `"<div class=\\"sc-bxivhb koVcpI\\">1511979321464<span class=\\"sc-bdVaJa icBKnC\\">Ошибка</span><span class=\\"sc-htpNat hvAZfD\\"></span></div>"`;

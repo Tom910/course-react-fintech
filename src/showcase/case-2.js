@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 
+const logInfo = debug('app:form:info');
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +43,7 @@ class App extends Component {
   handleFormSubmit2(event) {
     event.preventDefault();
 
-    console.log('srvr', `${this.server}/task/get?id=${this.state.id}`);
+    logInfo('srvr', `${this.server}/task/get?id=${this.state.id}`);
 
     fetch(`${this.server}/task/get?id=${this.state.id}`, {
       method: 'GET',
@@ -54,7 +56,7 @@ class App extends Component {
           return;
         }
 
-        console.log('taska', value);
+        logInfo('taska', value);
 
         const start = new Date(value.createTime);
         let succeeded = 0;
@@ -103,11 +105,11 @@ class App extends Component {
   async componentDidMount() {
     fetch(`${this.server}/worker/get/all`, {method: 'GET'})
       .then(response => {
-        console.log('1', response);
+        logInfo('1', response);
         return response.json()
       })
       .then(array => {
-        console.log('2', array);
+        logInfo('2', array);
         this.setState({
           workers: array.map(worker => worker.name)
         });

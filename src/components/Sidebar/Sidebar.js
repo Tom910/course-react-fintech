@@ -1,4 +1,5 @@
 import React from 'react';
+import { createSelector } from 'reselect';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import Money from '../Money/Money';
@@ -46,7 +47,7 @@ const Sidebar = ({ accounts, accountsSum }) => {
   );
 };
 
-function sumAccountsCalc(accounts, operations) {
+function sumAccountsCalc(operations) {
   const result = {};
 
   for (var key in operations) {
@@ -67,10 +68,17 @@ Sidebar.defaultProps = {
   accounts: {}
 };
 
+const getAccountInState = (state) => state.operations;
+
+const sumAccountSelector = createSelector(
+  getAccountInState,
+  sumAccountsCalc
+);
+
 const mapStateToProps = state => {
   return {
     accounts: state.accounts,
-    accountsSum: sumAccountsCalc(state.accounts, state.operations)
+    accountsSum: sumAccountSelector(state)
   }
 };
 
